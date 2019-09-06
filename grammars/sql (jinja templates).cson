@@ -93,6 +93,10 @@
     'match': '(?i)\\b(bigserial|boolean|box|bytea|cidr|circle|date|datetime|datetime2|double\\s+precision|enum|inet|integer|interval|line|lseg|macaddr|money|oid|path|point|polygon|real|serial|sysdate|text|uniqueidentifier)\\b'
     'name': 'storage.type.sql'
   }
+    {
+      'match': '(?i)\\b(timestampntz|timestamp_ntz)\\b'
+      'name': 'storage.type.sql'
+    }
   {
     'match': '(?i)\\b(bigint|bit(?:\\s+varying)?|n?char|character(?:\\s+varying)?|float|int|number|smallint|time(?:stamp)?tz|tinyint|n?varchar\\d?)\\b(?:\\s*(\\()\\s*(\\d*)\\s*(\\)))?'
     'captures':
@@ -144,7 +148,11 @@
     'name': 'constant.numeric.sql'
   }
   {
-    'match': '(?i:\\b(select(\\s+distinct)?|insert\\s+(ignore\\s+)?into|update|delete|from|use|declare|set|where|group\\s+by|or|like|between|and|(union|except|intersect)(\\s+all)?|having|order\\s+by|partition\\s+by|limit|offset|(inner|cross)\\s+join|join|straight_join|(left|right)(\\s+outer)?\\s+join|natural(\\s+(left|right)(\\s+outer)?)?\\s+join|using|regexp|rlike|with|exists)\\b)'
+    'match': '\\b(true|false)\\b'
+    'name': 'constant.numeric.sql'
+  }
+  {
+    'match': '(?i:\\b(select(\\s+distinct)?|insert\\s+(ignore\\s+)?into|distinct|update|delete|from|use|declare|set|where|group\\s+by|or|(i)?like|between|and|(union|except|intersect)(\\s+all)?|having|order\\s+by|partition\\s+by|limit|offset|(inner|cross)\\s+join|join|straight_join|(left|right)(\\s+outer)?\\s+join|natural(\\s+(left|right)(\\s+outer)?)?\\s+join|using|regexp|rlike|with|exists)\\b)'
     'name': 'keyword.other.DML.sql'
   }
   {
@@ -188,7 +196,8 @@
     'name': 'keyword.other.case.sql'
   }
   {
-    'match': '(?i)\\b(coalesce|nvl|nullif)\\b'
+    'comment': 'Emir Lejlic: Not sure if the added should be placed here or under functions'
+    'match': '(?i)\\b(coalesce|nvl(2)?|nullif|iff|zeroifnull)\\b'
     'name': 'keyword.other.conditional.sql'
   }
   {
@@ -210,6 +219,16 @@
   {
     'comment': 'List of SQL99 built-in functions from http://www.oreilly.com/catalog/sqlnut/chapter/ch04.html'
     'match': '(?i)\\b(CURRENT_(DATE|TIME(STAMP)?|USER)|(SESSION|SYSTEM)_USER|EXTRACT)\\b'
+    'name': 'support.function.scalar.sql'
+  }
+  {
+    'comment': 'Snowflake scalar date and time functions'
+    'match': '(?i)\\b(dateadd|time(stamp(_ntz)?)?_from_parts|datediff|to_date|hour|minute|second)\\b'
+    'name': 'support.function.scalar.sql'
+  }
+  {
+    'comment': 'Snowflake scalar conditional functions. TODO: need to sort them alphabetically'
+    'match': '(?i)\\b(least|greatest)\\b'
     'name': 'support.function.scalar.sql'
   }
   {
