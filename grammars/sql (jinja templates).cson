@@ -223,12 +223,12 @@
   }
   {
     'comment': 'Snowflake scalar date and time functions'
-    'match': '(?i)\\b(dateadd|time(stamp(_ntz)?)?_from_parts|datediff|to_date|hour|minute|second)\\b'
+    'match': '(?i)\\b(dateadd|time(stamp(_ntz)?)?_from_parts|datediff|to_date|hour|minute|second|convert_timezone)\\b'
     'name': 'support.function.scalar.sql'
   }
   {
     'comment': 'Snowflake scalar conditional functions. TODO: need to sort them alphabetically'
-    'match': '(?i)\\b(least|greatest)\\b'
+    'match': '(?i)\\b(least|greatest|try_to_number)\\b'
     'name': 'support.function.scalar.sql'
   }
   {
